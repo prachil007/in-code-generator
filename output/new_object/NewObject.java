@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 public class NewObject extends BaseModel {
 
-    private static final long serialVersionUID = 860296799011442167L;
+    private static final long serialVersionUID = 407030274640050931L;
 
 	private Long newObjectId;
 	private String name;
