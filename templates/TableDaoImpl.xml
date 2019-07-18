@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="##package_name##.daos.##table_name_cs##Dao">
+	
+	<resultMap id="##table_name_lcs##Map" type="##package_name##.models.##table_name_cs##" extends="com.mobisoftinfotech.common.daos.BaseModelDao.baseModelMap">
+		<result property="##field_lcs##" column="##field##" />
+		
+	</resultMap>
+	
+
+	<sql id="##table_name_lcs##Cols">
+		##field_list##,
+		deleted, created_by, updated_by, created_at, updated_at
+	</sql>
+
+	
+	<insert id="add##table_name_cs##" parameterType="##package_name##.models.##table_name_cs##" useGeneratedKeys="true" keyProperty="##id_field_lcs##" keyColumn="##id_field##">
+		INSERT INTO 
+			##table_name##
+			(
+				<include refid="##table_name_lcs##Cols"></include> 	
+			)
+		VALUES 
+			(
+				##field_list_lcs_hashed##,
+				#{deleted}, #{createdBy}, #{updatedBy}, #{createdAt}, #{updatedAt}
+			)
+  	</insert>
+
+
+	<insert id="add##table_name_cs##s" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="##id_field_lcs##" keyColumn="##id_field##">
+		<foreach collection="##table_name_lcs##s" separator=";" item="model"></foreach>
+		INSERT INTO
+			##table_name##
+			(
+				<include refid="##table_name_lcs##Cols"></include>
+			)
+		VALUES
+			(
+				##field_list_lcs_modelhashed##,
+				#{model.deleted}, #{model.createdBy}, #{model.updatedBy}, #{model.createdAt}, #{model.updatedAt}
+			)
+  	</insert>
+	
+	
+	<select id="findBy##id_field_cs##" parameterType="Long" resultMap="##table_name_lcs##Map">
+		SELECT 
+			<include refid="##table_name_lcs##Cols"></include> 
+		FROM 
+			##table_name##
+		WHERE
+			##id_field## = ##id_field_lcs_hashed##
+		AND
+			deleted=false
+	</select>
+
+
+	<update id="update##table_name_cs##" parameterType="##package_name##.models.##table_name_cs##">
+		UPDATE
+			##table_name##
+		SET
+			##field_list_no_id## = ##field_list_no_id_lcs_hashed##,
+			updated_by = #{updatedBy},
+			updated_at = #{updatedAt}
+		WHERE
+			##id_field## = ##id_field_lcs_hashed##
+	</update>
+
+
+	<update id="delete##table_name_cs##By##id_field_cs##" parameterType="map">
+		UPDATE
+			##table_name##
+		SET
+			deleted=true,
+			updated_by = #{baseModel.updatedBy},
+			updated_at = #{baseModel.updatedAt}
+		WHERE
+			##id_field## = ##id_field_lcs_hashed##
+	</update>
+	
+</mapper>

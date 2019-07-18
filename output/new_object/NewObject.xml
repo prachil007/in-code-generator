@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yourcompany.yourappname.daos.NewObjectDao">
+	
+	<resultMap id="newObjectMap" type="com.yourcompany.yourappname.models.NewObject" extends="com.mobisoftinfotech.common.daos.BaseModelDao.baseModelMap">
+
+		<result property="newObjectId" column="new_object_id" />
+		<result property="name" column="name" />
+		<result property="addressLineField1" column="address_line_field1" />
+		<result property="addressLineField2" column="address_line_field2" />
+		<result property="cityI" column="city_i" />
+		
+	</resultMap>
+	
+
+	<sql id="newObjectCols">
+		new_object_id, name, address_line_field1, address_line_field2, city_i,
+		deleted, created_by, updated_by, created_at, updated_at
+	</sql>
+
+	
+	<insert id="addNewObject" parameterType="com.yourcompany.yourappname.models.NewObject" useGeneratedKeys="true" keyProperty="newObjectId" keyColumn="new_object_id">
+		INSERT INTO 
+			new_object
+			(
+				<include refid="newObjectCols"></include> 	
+			)
+		VALUES 
+			(
+				#{newObjectId}, #{name}, #{addressLineField1}, #{addressLineField2}, #{cityI},
+				#{deleted}, #{createdBy}, #{updatedBy}, #{createdAt}, #{updatedAt}
+			)
+  	</insert>
+
+
+	<insert id="addNewObjects" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="newObjectId" keyColumn="new_object_id">
+		<foreach collection="newObjects" separator=";" item="model"></foreach>
+		INSERT INTO
+			new_object
+			(
+				<include refid="newObjectCols"></include>
+			)
+		VALUES
+			(
+				#{model.newObjectId}, #{model.name}, #{model.addressLineField1}, #{model.addressLineField2}, #{model.cityI},
+				#{model.deleted}, #{model.createdBy}, #{model.updatedBy}, #{model.createdAt}, #{model.updatedAt}
+			)
+  	</insert>
+	
+	
+	<select id="findByNewObjectId" parameterType="Long" resultMap="newObjectMap">
+		SELECT 
+			<include refid="newObjectCols"></include> 
+		FROM 
+			new_object
+		WHERE
+			new_object_id = #{newObjectId}
+		AND
+			deleted=false
+	</select>
+
+
+	<update id="updateNewObject" parameterType="com.yourcompany.yourappname.models.NewObject">
+		UPDATE
+			new_object
+		SET
+			name = #{name},
+			address_line_field1 = #{addressLineField1},
+			address_line_field2 = #{addressLineField2},
+			city_i = #{cityI},
+			updated_by = #{updatedBy},
+			updated_at = #{updatedAt}
+		WHERE
+			new_object_id = #{newObjectId}
+	</update>
+
+
+	<update id="deleteNewObjectByNewObjectId" parameterType="map">
+		UPDATE
+			new_object
+		SET
+			deleted=true,
+			updated_by = #{baseModel.updatedBy},
+			updated_at = #{baseModel.updatedAt}
+		WHERE
+			new_object_id = #{newObjectId}
+	</update>
+	
+</mapper>
