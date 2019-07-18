@@ -1,4 +1,5 @@
-# in-code-generator
+# INCode Generator
+###### _in-code-generator_
 Code generator for any language, java, python, node, php, etc. from Table Structure.
 
 This is __template based__ code generator that can be adapted to generate any language code.
