@@ -53,18 +53,28 @@ adopting this code to your needs.
 template folder.
 3. Add your replacement logic to `custom_processor`
 4. `custom_processor` provides  
-    * `processed_contents`: TextIOWrapper = already processed file contents 
+    * `processed_contents`: TextIOWrapper (String) = already processed file contents 
     * `original_file_name`: String = Template file name, can be used to identify specific template and 
     return a partial file name which will consist in the form __\<TableName\>\<PartialFileName\>.\<ext\>__ and can be used to process template specific contents. 
     * `partial_file_name_with_ext`: String = If you are processing a table based contents, 
     __\<PartialFileName\>.\<ext\>__, will be appended at the end 
     of the table name.
     
-5. Although this program primarily focuses on 
+    It also returns -
+    * `processed_contents`: TextIOWrapper (String) = As the name suggests, once you are finished with processing contents, return new contents.
+    * `partial_file_name_with_ext`: String = This is the same one which was available in input, although you can modify it according to your need.
+    
+5. Points to be considered - 
+    * Table name is considered in singular form, its sibling (plural) form is being considered by adding `s` at the end of the program.
+    * While suggesting PRs, please do not make code complicated, and follow the best practices of python.
+6. Although this program primarily focuses on 
 Code Generation, it can be transformed into any 
 text replacement needs, such as generating a 
 letter to all of your employees. :D    
 
+#### Contribution
+1. Raise an issue, a community discussion will decide the necessity of a feature. 
+2. PRs are welcome.
 
 #### License  
 GNU General Public License v3.0  
