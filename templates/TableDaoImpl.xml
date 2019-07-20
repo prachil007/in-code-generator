@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="##package_name##.daos.##table_name_cs##Dao">
 	
-	<resultMap id="##table_name_lcs##Map" type="##package_name##.models.##table_name_cs##" extends="com.mobisoftinfotech.common.daos.BaseModelDao.baseModelMap">
+	<resultMap id="##table_name_lcs##Map" type="##package_name##.models.##table_name_cs##" extends="##package_name##.common.daos.BaseModelDao.baseModelMap">
 		<result property="##field_lcs##" column="##field##" />
 		
 	</resultMap>

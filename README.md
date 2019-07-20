@@ -21,30 +21,51 @@ To write your own replacement logic, use
 `def custom_processor(processed_contents, original_file_name: str, partial_file_name_with_ext: str)`  
   
   
-Ex. com.yourpackage.yourappname  
+1. Ex. com.yourpackage.yourappname  
 `PACKAGE_NAME = '##package_name##'`
       
-Ex. table_name (lower_snake_cased)  
+2. Ex. table_name (lower_snake_cased)  
 `TABLE_NAME = '##table_name##'`
   
-Ex. TableName  
+3. Ex. TableName  
 `TABLE_NAME_CS = '##table_name_cs##'`
   
-Ex. tableName  
+4. Ex. tableName  
 `TABLE_NAME_LCS = '##table_name_lcs##'`
   
-Ex. Format same as above 3  
+5. Ex. Format same as above 3  
 `ID_FIELD = '##id_field##'`  
 `ID_FIELD_CS = '##id_field_cs##'`  
 `ID_FIELD_LCS = '##id_field_lcs##'`  
   
-Ex. \#{fieldName}  
+6. Ex. \#{fieldName}  
 `ID_FIELD_LCS_HASHED = '##id_field_lcs_hashed##'`  
   
-Need in model class.  
+7. A random serial number.  
 `GENERATED_SERIAL = '##eighteen_digit_random_number##'`  
   
-  
+#### Adopting `INCode Generator` to your needs.  
+Here are some helpful instructions before you start 
+adopting this code to your needs.
+
+1. `code_replacer.py` is what you will need to modify.
+2. `custom_processor` method processes every file in 
+template folder.
+3. Add your replacement logic to `custom_processor`
+4. `custom_processor` provides  
+    * `processed_contents`: TextIOWrapper = already processed file contents 
+    * `original_file_name`: String = Template file name, can be used to identify specific template and 
+    return a partial file name which will consist in the form __\<TableName\>\<PartialFileName\>.\<ext\>__ and can be used to process template specific contents. 
+    * `partial_file_name_with_ext`: String = If you are processing a table based contents, 
+    __\<PartialFileName\>.\<ext\>__, will be appended at the end 
+    of the table name.
+    
+5. Although this program primarily focuses on 
+Code Generation, it can be transformed into any 
+text replacement needs, such as generating a 
+letter to all of your employees. :D    
+
+
 #### License  
 GNU General Public License v3.0  
   

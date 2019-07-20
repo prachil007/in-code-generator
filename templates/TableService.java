@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.transaction.annotation.Transactional;
 import ##package_name##.daos.##table_name_cs##Dao;
 import ##package_name##.models.##table_name_cs##;
-import com.mobisoftinfotech.common.models.BaseModel;
+import ##package_name##.common.models.BaseModel;
 
 @Service
 @Validated

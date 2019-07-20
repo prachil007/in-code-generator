@@ -3,7 +3,7 @@ package com.yourcompany.yourappname.daos;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.annotations.Param;
 import com.yourcompany.yourappname.models.NewObject;
-import com.mobisoftinfotech.common.models.BaseModel;
+import com.yourcompany.yourappname.common.models.BaseModel;
 
 @Component
 public interface NewObjectDao {

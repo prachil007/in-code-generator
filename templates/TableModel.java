@@ -1,6 +1,6 @@
 package ##package_name##.models;
 
-import com.mobisoftinfotech.common.models.BaseModel;
+import ##package_name##.common.models.BaseModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

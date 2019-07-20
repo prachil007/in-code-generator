@@ -3,19 +3,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yourcompany.yourappname.daos.NewObjectDao">
 	
-	<resultMap id="newObjectMap" type="com.yourcompany.yourappname.models.NewObject" extends="com.mobisoftinfotech.common.daos.BaseModelDao.baseModelMap">
+	<resultMap id="newObjectMap" type="com.yourcompany.yourappname.models.NewObject" extends="com.yourcompany.yourappname.common.daos.BaseModelDao.baseModelMap">
 
 		<result property="newObjectId" column="new_object_id" />
 		<result property="name" column="name" />
 		<result property="addressLineField1" column="address_line_field1" />
 		<result property="addressLineField2" column="address_line_field2" />
-		<result property="cityI" column="city_i" />
 		
 	</resultMap>
 	
 
 	<sql id="newObjectCols">
-		new_object_id, name, address_line_field1, address_line_field2, city_i,
+		new_object_id, name, address_line_field1, address_line_field2,
 		deleted, created_by, updated_by, created_at, updated_at
 	</sql>
 
@@ -28,7 +27,7 @@
 			)
 		VALUES 
 			(
-				#{newObjectId}, #{name}, #{addressLineField1}, #{addressLineField2}, #{cityI},
+				#{newObjectId}, #{name}, #{addressLineField1}, #{addressLineField2},
 				#{deleted}, #{createdBy}, #{updatedBy}, #{createdAt}, #{updatedAt}
 			)
   	</insert>
@@ -43,7 +42,7 @@
 			)
 		VALUES
 			(
-				#{model.newObjectId}, #{model.name}, #{model.addressLineField1}, #{model.addressLineField2}, #{model.cityI},
+				#{model.newObjectId}, #{model.name}, #{model.addressLineField1}, #{model.addressLineField2},
 				#{model.deleted}, #{model.createdBy}, #{model.updatedBy}, #{model.createdAt}, #{model.updatedAt}
 			)
   	</insert>
@@ -68,7 +67,6 @@
 			name = #{name},
 			address_line_field1 = #{addressLineField1},
 			address_line_field2 = #{addressLineField2},
-			city_i = #{cityI},
 			updated_by = #{updatedBy},
 			updated_at = #{updatedAt}
 		WHERE
