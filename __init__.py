@@ -44,11 +44,13 @@ def main():
 
     input_file_contents = FileProcessor.get_file_contents(input_file_path)
     if input_file_contents:
-        file_content: FileContent = CodeProcessor.process_file_contents(input_file_contents)
-        file_content.package_name = package_name
-        if file_content:
-            file_exports: FileProcessor = FileProcessor(file_content)
-            file_exports.process_and_export_templates()
+        file_contents: [FileContent] = CodeProcessor.process_file_contents(input_file_contents)
+        FileProcessor.remove_output_dir()
+        for file_content in file_contents:
+            file_content.package_name = package_name
+            if file_content:
+                file_exports: FileProcessor = FileProcessor(file_content)
+                file_exports.process_and_export_templates()
 
 
 if __name__ == '__main__':

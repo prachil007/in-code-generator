@@ -12,3 +12,10 @@ create table new_object (
     updated_at bigint not null
 );
 
+CREATE TABLE `user` {
+    user_id bigint NOT NULL,
+    first_name bigint,
+    last_name bigint,
+    email text,
+    CONSTRAINT user_pk_user_id PRIMARY KEY user(user_id)
+}

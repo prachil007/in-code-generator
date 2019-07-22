@@ -7,7 +7,9 @@ from models.file_content import FileContent
 class CodeProcessor:
 
     @classmethod
-    def process_file_contents(cls, contents: TextIOWrapper) -> FileContent:
+    def process_file_contents(cls, contents: TextIOWrapper) -> [FileContent]:
+
+        all_file_contents: [FileContent] = []
 
         table_name: str = ''
         field_list: [{str, str}] = []
@@ -45,15 +47,20 @@ class CodeProcessor:
                     field_list.append(field)
 
             if table_ended:
-                break
+                new_file_contents = FileContent(table_name, field_list)
+                table_name = ''
+                field_list = []
+                table_started = False
+                table_ended = False
+                if len(new_file_contents.field_list) > 2:
+                    all_file_contents.append(new_file_contents)
+                else:
+                    ErrorHandler.insufficient_table_fields(table_name)
 
         if table_started:
             ErrorHandler.table_structure()
 
-        file_contents = FileContent(table_name, field_list)
-        if len(file_contents.field_list) <= 2:
-            ErrorHandler.insufficient_fields_exit()
-        return file_contents
+        return all_file_contents
 
     @classmethod
     def print(cls, file_contents: FileContent):

@@ -3,7 +3,6 @@
 # 2 - Incorrect table structure
 # 3 - Directory does not exist
 # 4 - File export error
-# 5 - Insufficient number of fields
 
 
 class ErrorHandler:
@@ -28,11 +27,10 @@ class ErrorHandler:
         print('Directory does not exists: ' + dir_name)
 
     @classmethod
+    def insufficient_table_fields(cls, table_name: str):
+        print('Table ' + table_name + ' has insufficient fields. Skipping...')
+
+    @classmethod
     def file_export_failed_exit(cls, file_name: str, error):
         print('File export error: ' + file_name + '\nError: ' + error)
         exit(4)
-
-    @classmethod
-    def insufficient_fields_exit(cls):
-        print('At least two fields must be there to create table.')
-        exit(5)

@@ -47,11 +47,15 @@ class FileProcessor:
     def __check_output_path__(cls, subdir_name):
 
         output_dir_path = FileProcessor.OUTPUT_DIR
-        shutil.rmtree(output_dir_path)
         if subdir_name:
             output_dir_path = FileProcessor.OUTPUT_DIR + subdir_name
         os.makedirs(output_dir_path, exist_ok=True)
         print('Output dir: ' + output_dir_path)
+
+    @classmethod
+    def remove_output_dir(cls):
+        if os.path.exists(FileProcessor.OUTPUT_DIR):
+            shutil.rmtree(FileProcessor.OUTPUT_DIR)
 
     def __process_file__(self, original_file_name: str):
         template_contents = self.get_file_contents(original_file_name)
