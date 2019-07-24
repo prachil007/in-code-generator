@@ -67,10 +67,14 @@ template folder.
 5. Points to be considered - 
     * Table name is considered in singular form, its sibling (plural) form is being considered by adding `s` at the end of the program.
     * While suggesting PRs, please do not make code complicated, and follow the best practices of python.
+    * `'deleted', 'created_at', 'created_by', 'updated_at', 'updated_by'` are the field names that will be ignored while creating tables. Reason being that they are common and being handled as deemed necessary.
+    * `'constraint'` or `');'` are termination sequences.
+
 6. Although this program primarily focuses on 
 Code Generation, it can be transformed into any 
 text replacement needs, such as generating a 
-letter to all of your employees. :D    
+letter to all of your employees. :D  
+    
 
 #### Contribution
 1. Raise an issue, a community discussion will decide the necessity of a feature. 

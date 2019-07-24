@@ -41,7 +41,7 @@ class FileProcessor:
 
         for (root, dirs, files) in os.walk(self.TEMPLATE_DIR, topdown=True):
             for file_name in files:
-                self.__process_file__(self.TEMPLATE_DIR + '/' + file_name)
+                self.__process_file__(self.TEMPLATE_DIR + file_name)
 
     @classmethod
     def __check_output_path__(cls, subdir_name):

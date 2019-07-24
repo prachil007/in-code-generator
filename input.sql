@@ -3,6 +3,7 @@
 create table new_object (
     new_object_id bigint not null,
     'name' text,
+    new_object_created_at bigint,
     address_line_field1 varchar(100),
     address_line_field2 varchar(100),
     deleted boolean,

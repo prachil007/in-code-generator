@@ -4,6 +4,9 @@ from error_handler import ErrorHandler
 from models.file_content import FileContent
 
 
+REMOVABLE_FIELDS = ['deleted', 'created_at', 'created_by', 'updated_at', 'updated_by']
+
+
 class CodeProcessor:
 
     @classmethod
@@ -31,20 +34,11 @@ class CodeProcessor:
                 split_array = line.strip().split(' ')
 
             for text in split_array:
-                if ('deleted' == text) | ('created_at' in text) | ('created_by' in text) | \
-                        ('updated_at' == text) | ('updated_by' == text) | \
-                        (');' == text) | ('constraint' in line):
+                if 'constraint' in line or ');' in line:
                     table_started = False
                     table_ended = True
 
-            if table_started:
-                line_str_array: [str] = line.strip().split(' ')
-                if len(line_str_array) >= 1:
-                    field = {
-                        'name': line_str_array[0],
-                        'data_type': line_str_array[1]
-                    }
-                    field_list.append(field)
+            cls.add_field(field_list, line, table_started)
 
             if table_ended:
                 new_file_contents = FileContent(table_name, field_list)
@@ -61,6 +55,18 @@ class CodeProcessor:
             ErrorHandler.table_structure()
 
         return all_file_contents
+
+    @classmethod
+    def add_field(cls, field_list, line, table_started):
+        if table_started:
+            line_str_array: [str] = line.strip().split(' ')
+            if len(line_str_array) > 1:
+                if line_str_array[0] not in REMOVABLE_FIELDS:
+                    field = {
+                        'name': line_str_array[0],
+                        'data_type': line_str_array[1]
+                    }
+                    field_list.append(field)
 
     @classmethod
     def print(cls, file_contents: FileContent):
