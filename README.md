@@ -79,6 +79,7 @@ letter to all of your employees. :D
 #### Contribution
 1. Raise an issue, a community discussion will decide the necessity of a feature. 
 2. PRs are welcome.
+3. Templates are welcome too. Just make sure that you are covering all you your needs in single go.
 
 #### License  
 GNU General Public License v3.0  
