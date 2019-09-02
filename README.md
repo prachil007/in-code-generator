@@ -67,7 +67,6 @@ template folder.
     * `partial_file_name_with_ext`: String = This is the same one which was available in input, although you can modify it according to your need.
     
 5. Points to be considered - 
-    * Table name is considered in singular form, its sibling (plural) form is being considered by adding `s` at the end of the program.
     * While suggesting PRs, please do not make code complicated, and follow the best practices of python.
     * `'deleted', 'created_at', 'created_by', 'updated_at', 'updated_by'` are the field names that will be ignored while creating tables. Reason being that they are common and being handled as deemed necessary.
     * `'constraint'` or `');'` are termination sequences.
