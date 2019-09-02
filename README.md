@@ -82,6 +82,14 @@ letter to all of your employees. :D
 2. PRs are welcome.
 3. Templates are welcome too. Just make sure that you are covering all you your needs in single go.
 
+#### Thank you!
+
+For all the inspirations and help from my friends and colleagues, more to some especially inspiring peoples. (Names are dropped upon their request.)
+
+#### No Association Declaration
+
+This library is my personal work and is no way associated to my current and previous employer(s).
+
 #### License  
 GNU General Public License v3.0  
   
