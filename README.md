@@ -4,6 +4,13 @@ Code generator for any language, java, python, node, php, etc. from Table Struct
 
 This is __template based__ code generator that can be adapted to generate any language code.
 
+#### How to run
+
+1. Take a pull ``
+1. Install python.
+2. Go to folder and run
+`> python __init__.py --package-name com.yourcompany.yourappname`
+
 #### Program Arguments
 `--input` - this argument can be use to specify input file name.   
 _Default: ./input.sql_ 
