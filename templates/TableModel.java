@@ -1,9 +1,6 @@
 package ##package_name##.models;
 
 import ##package_name##.common.models.BaseModel;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 public class ##table_name_cs## extends BaseModel {
 

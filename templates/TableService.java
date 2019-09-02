@@ -1,15 +1,17 @@
 package ##package_name##.services;
 
 import javax.validation.Valid;
-import org.springframework.validation.annotation.Validated;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.constraints.NotNull;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+
+import ##package_name##.common.models.BaseModel;
 import ##package_name##.daos.##table_name_cs##Dao;
 import ##package_name##.models.##table_name_cs##;
-import ##package_name##.common.models.BaseModel;
 
 @Service
 @Validated
@@ -17,7 +19,12 @@ public class ##table_name_cs##Service {
  
     @Autowired
     private ##table_name_cs##Dao ##table_name_lcs##Dao;
-    
+
+    @Transactional(rollbackFor = Exception.class)
+    public List<##table_name_cs##> findAll##table_name_cs_plural##() {
+		return ##table_name_lcs##Dao.findAll##table_name_cs_plural##();
+	}
+
     @Transactional(rollbackFor = Exception.class)
     public ##table_name_cs## findBy##id_field_cs##
         (@NotNull(message = "required.##id_field_lcs##") Long ##id_field_lcs##) {

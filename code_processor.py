@@ -14,7 +14,7 @@ class CodeProcessor:
 
         all_file_contents: [FileContent] = []
 
-        table_name: str = ''
+        table_name_plural: str = ''
         field_list: [{str, str}] = []
         table_started: bool = False
         table_ended: bool = False
@@ -25,8 +25,8 @@ class CodeProcessor:
                 split_array = line.replace('create table', '').strip().split(' ')
                 table_started = True
                 if len(split_array) > 1:
-                    table_name = split_array[0]
-                    print('Table name : ' + table_name)
+                    table_name_plural = split_array[0]
+                    print('Table name : ' + table_name_plural)
                 continue
 
             split_array = []
@@ -41,15 +41,16 @@ class CodeProcessor:
             cls.add_field(field_list, line, table_started)
 
             if table_ended:
-                new_file_contents = FileContent(table_name, field_list)
-                table_name = ''
-                field_list = []
-                table_started = False
-                table_ended = False
-                if len(new_file_contents.field_list) > 2:
+                if len(field_list) > 2:
+                    table_name = field_list[0]["name"][:-3]
+                    new_file_contents = FileContent(table_name, table_name_plural, field_list)
+                    table_name_plural = ''
+                    field_list = []
+                    table_started = False
+                    table_ended = False
                     all_file_contents.append(new_file_contents)
                 else:
-                    ErrorHandler.insufficient_table_fields(table_name)
+                    ErrorHandler.insufficient_table_fields(table_name_plural)
 
         if table_started:
             ErrorHandler.table_structure()

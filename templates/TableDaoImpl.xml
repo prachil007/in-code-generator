@@ -17,7 +17,7 @@
 	
 	<insert id="add##table_name_cs##" parameterType="##package_name##.models.##table_name_cs##" useGeneratedKeys="true" keyProperty="##id_field_lcs##" keyColumn="##id_field##">
 		INSERT INTO 
-			##table_name##
+			##table_name_plural##
 			(
 				<include refid="##table_name_lcs##Cols"></include> 	
 			)
@@ -29,18 +29,19 @@
   	</insert>
 
 
-	<insert id="add##table_name_cs##s" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="##id_field_lcs##" keyColumn="##id_field##">
-		<foreach collection="##table_name_lcs##s" separator=";" item="model"></foreach>
-		INSERT INTO
-			##table_name##
-			(
-				<include refid="##table_name_lcs##Cols"></include>
-			)
-		VALUES
-			(
-				##field_list_lcs_modelhashed##,
-				#{model.deleted}, #{model.createdBy}, #{model.updatedBy}, #{model.createdAt}, #{model.updatedAt}
-			)
+	<insert id="add##table_name_cs_plural##" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="##id_field_lcs##" keyColumn="##id_field##">
+		<foreach collection="##table_name_lcs_plural##" separator=";" item="model">
+			INSERT INTO
+				##table_name_plural##
+				(
+					<include refid="##table_name_lcs##Cols"></include>
+				)
+			VALUES
+				(
+					##field_list_lcs_modelhashed##,
+					#{model.deleted}, #{model.createdBy}, #{model.updatedBy}, #{model.createdAt}, #{model.updatedAt}
+				)
+		</foreach>
   	</insert>
 	
 	
@@ -48,7 +49,7 @@
 		SELECT 
 			<include refid="##table_name_lcs##Cols"></include> 
 		FROM 
-			##table_name##
+			##table_name_plural##
 		WHERE
 			##id_field## = ##id_field_lcs_hashed##
 		AND
@@ -58,7 +59,7 @@
 
 	<update id="update##table_name_cs##" parameterType="##package_name##.models.##table_name_cs##">
 		UPDATE
-			##table_name##
+			##table_name_plural##
 		SET
 			##field_list_no_id## = ##field_list_no_id_lcs_hashed##,
 			updated_by = #{updatedBy},
@@ -70,7 +71,7 @@
 
 	<update id="delete##table_name_cs##By##id_field_cs##" parameterType="map">
 		UPDATE
-			##table_name##
+			##table_name_plural##
 		SET
 			deleted=true,
 			updated_by = #{baseModel.updatedBy},

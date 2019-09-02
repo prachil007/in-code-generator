@@ -9,10 +9,16 @@ class ReplacementStrings(Enum):
     PACKAGE_NAME = '##package_name##'
     # Ex. table_name (lower_snake_cased)
     TABLE_NAME = '##table_name##'
+    # Ex. table_names (lower_snake_cased)
+    TABLE_NAME_PLURAL = '##table_name_plural##'
     # Ex. TableName
     TABLE_NAME_CS = '##table_name_cs##'
+    # Ex. TableName
+    TABLE_NAME_CS_PLURAL = '##table_name_cs_plural##'
     # Ex. tableName
     TABLE_NAME_LCS = '##table_name_lcs##'
+    # Ex. tableName
+    TABLE_NAME_LCS_PLURAL = '##table_name_lcs_plural##'
     # Ex. Same as above 3
     FIELD = '##field##'
     FIELD_CS = '##field_cs##'
@@ -98,24 +104,24 @@ class CodeReplacer:
 
     def common_processor(self, template_contents):
         processed_contents = template_contents.read()
-        processed_contents = processed_contents.replace(ReplacementStrings.PACKAGE_NAME.value,
-                                                        self.file_contents.package_name)
-        processed_contents = processed_contents.replace(ReplacementStrings.TABLE_NAME.value,
-                                                        self.file_contents.table_name)
-        processed_contents = processed_contents.replace(ReplacementStrings.TABLE_NAME_CS.value,
-                                                        self.file_contents.table_name_cs)
-        processed_contents = processed_contents.replace(ReplacementStrings.TABLE_NAME_LCS.value,
-                                                        self.file_contents.table_name_lcs)
-        processed_contents = processed_contents.replace(ReplacementStrings.GENERATED_SERIAL.value,
-                                                        str(self.file_contents.generated_serial))
-        processed_contents = processed_contents.replace(ReplacementStrings.ID_FIELD.value,
-                                                        self.file_contents.field_list[0].name)
-        processed_contents = processed_contents.replace(ReplacementStrings.ID_FIELD_CS.value,
-                                                        self.file_contents.field_list[0].name_cs)
-        processed_contents = processed_contents.replace(ReplacementStrings.ID_FIELD_LCS.value,
-                                                        self.file_contents.field_list[0].name_lcs)
-        processed_contents = processed_contents.replace(ReplacementStrings.ID_FIELD_LCS_HASHED.value,
-                                                        self.file_contents.field_list[0].name_lcs_hashed)
+        replacement_map: {str: str} = {
+            ReplacementStrings.PACKAGE_NAME.value: self.file_contents.package_name,
+            ReplacementStrings.TABLE_NAME.value: self.file_contents.table_name,
+            ReplacementStrings.TABLE_NAME_CS.value: self.file_contents.table_name_cs,
+            ReplacementStrings.TABLE_NAME_LCS.value: self.file_contents.table_name_lcs,
+            ReplacementStrings.TABLE_NAME_PLURAL.value: self.file_contents.table_name_plural,
+            ReplacementStrings.TABLE_NAME_CS_PLURAL.value: self.file_contents.table_name_cs_plural,
+            ReplacementStrings.TABLE_NAME_LCS_PLURAL.value: self.file_contents.table_name_lcs_plural,
+            ReplacementStrings.GENERATED_SERIAL.value: str(self.file_contents.generated_serial),
+            ReplacementStrings.ID_FIELD.value: self.file_contents.field_list[0].name,
+            ReplacementStrings.ID_FIELD_CS.value: self.file_contents.field_list[0].name_cs,
+            ReplacementStrings.ID_FIELD_LCS.value: self.file_contents.field_list[0].name_lcs,
+            ReplacementStrings.ID_FIELD_LCS_HASHED.value: self.file_contents.field_list[0].name_lcs_hashed
+        }
+
+        for key, value in replacement_map.items():
+            processed_contents = processed_contents.replace(key, value);
+
         return processed_contents
 
     @staticmethod

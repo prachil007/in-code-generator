@@ -76,6 +76,8 @@ class FileProcessor:
             partial_file_name = 'Dao'
         elif 'service' in file_name:
             partial_file_name = 'Service'
+        elif 'controller' in file_name:
+            partial_file_name = 'Controller'
 
         partial_file_name_with_ext = partial_file_name + file_extension
         post_processed_contents, partial_file_name_with_ext = code_replacer.custom_processor(post_processed_contents,

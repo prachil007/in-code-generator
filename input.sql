@@ -1,6 +1,6 @@
 
 
-create table new_object (
+create table new_objects (
     new_object_id bigint not null,
     'name' text,
     new_object_created_at bigint,
@@ -13,7 +13,7 @@ create table new_object (
     updated_at bigint not null
 );
 
-CREATE TABLE `user` {
+CREATE TABLE `users` {
     user_id bigint NOT NULL,
     first_name bigint,
     last_name bigint,

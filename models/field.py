@@ -22,7 +22,7 @@ class Field:
         lower_cased = data_type.lower()
         if ('char' in lower_cased) | ('text' in lower_cased):
             self.data_type = 'String'
-        elif ('double' in lower_cased) | ('real' in lower_cased) | ('float' in lower_cased):
+        elif ('double' in lower_cased) | ('real' in lower_cased) | ('float' in lower_cased) | ('decimal' in lower_cased):
             self.data_type = 'Double'
         elif 'boolean' in lower_cased:
             self.data_type = 'boolean'
