@@ -43,7 +43,9 @@ To write your own replacement logic, use
   
 7. A random serial number.  
 `GENERATED_SERIAL = '##eighteen_digit_random_number##'`  
-  
+
+Please refer other fields in `code_replacer.py`
+
 #### Adopting `INCode Generator` to your needs.  
 Here are some helpful instructions before you start 
 adopting this code to your needs.
