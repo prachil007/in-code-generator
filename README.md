@@ -1,4 +1,4 @@
-# INCode Generator
+# IN Code Generator
 ###### _in-code-generator_
 Code generator for any language, java, python, node, php, etc. from Table Structure.
 
@@ -6,16 +6,17 @@ This is __template based__ code generator that can be adapted to generate any la
 
 #### How to run
 
-1. Take a pull ``
-1. Install python.
-2. Go to folder and run
+1. Take a pull   
+`> git clone https://github.com/prachil007/in-code-generator.git`
+2. Install python.
+3. Go to project folder and run   
 `> python __init__.py --package-name com.yourcompany.yourappname`
 
 #### Program Arguments
 `--input` - this argument can be use to specify input file name.   
 _Default: ./input.sql_ 
   
-`--package-name` - this argument can be use to specify input file name.   
+`--package-name` - this argument can be use to specify package name for your java project.   
 _Default: com.yourcompany.yourappname_
    
 #### Output
